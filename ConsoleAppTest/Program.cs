@@ -72,13 +72,129 @@ namespace ConsoleAppTest
 
         }
 
+        public static string seriesSum(int n)
+        {
 
-        
+            double final = 0.00;
+            int start;
+            string[] numbers;
+
+            if (n == 0)
+            {
+                numbers = new string[1];
+            }
+            else
+            {
+
+                numbers = new string[n];
+            }
+
+
+            numbers[0] = "1";
+            start = 1;
+
+            for (int i = 1; i < n; i++)
+            {
+
+                start += 3;
+                numbers[i] = "1/" + start;
+
+            }
+
+            n -= 1;
+
+            for (int i = 0; i <= n; i++)
+            {
+
+                double result;
+
+                if (double.TryParse(numbers[i], out result))
+                {
+
+                    final += result;
+
+                }
+
+
+                string[] split = numbers[i].Split(new char[] { ' ', '/' });
+
+                if (split.Length == 2 || split.Length == 3)
+                {
+                    int a, b;
+
+                    if (int.TryParse(split[0], out a) && int.TryParse(split[1], out b))
+                    {
+                        if (split.Length == 2)
+                        {
+                            final += ((double)a / b);
+                        }
+
+                    }
+                }
+
+
+            }
+
+            string final_str = final.ToString("0.00");
+            return final_str;
+        }
+
+        public static IEnumerable<string> FriendOrFoe(string[] names)
+        {
+
+            List<string> friends = new List<string>();
+
+            for (int i = 0; i < names.Length; i++)
+
+                if (names[i].Length == 4)
+                {
+                    friends.Add(names[i]);                 
+                }
+            
+            return friends;
+
+            //return names.Where(name => name.Length == 4);
+        }
+
+        public static int DigitalRoot(long n)
+        {
+            long sum = 0;
+
+            while (n > 0)
+            {
+                while (n != 0)
+                {
+                    sum += n % 10;
+                    n /= 10;
+                }
+
+                if (sum > 9)
+                {
+                    n = sum;
+                    sum = 0;
+                }
+            }
+
+            return (int)sum;
+        }
+
         static void Main(string[] args)
         {
 
+            /////////////////////////////////////////////////////////
 
-            Console.WriteLine("Gib strink:");
+            DigitalRoot(132189);
+
+            string[] names = { "Ryan", "Kieran", "Mark", "Jimmy" };
+            FriendOrFoe(names);
+
+
+            seriesSum(0);
+
+            //////////////////////////////////////////////////////
+           
+
+                Console.WriteLine("Gib strink:");
             Console.WriteLine("Get strink: {0}", Accum(Console.ReadLine())); 
 
 
