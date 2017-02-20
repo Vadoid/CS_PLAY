@@ -178,10 +178,21 @@ namespace ConsoleAppTest
             return (int)sum;
         }
 
+
+        public static int binaryArrayToNumber(int[] BinaryArray)
+        {
+            return Convert.ToInt32(string.Join("", BinaryArray), 2);
+        }
+
+
+
         static void Main(string[] args)
         {
 
             /////////////////////////////////////////////////////////
+
+            int[] BinaryArray = { 0, 1, 1, 0 };
+            binaryArrayToNumber(BinaryArray);
 
             DigitalRoot(132189);
 
